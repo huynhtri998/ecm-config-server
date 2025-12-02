@@ -34,14 +34,6 @@ eureka:
     service-url:
       defaultZone: http://localhost:8070/eureka/
 
-services:
-  customer:
-    base-url: http://localhost:8080/api
-  product:
-    base-url: http://localhost:8081/api
-  payment:
-    base-url: http://localhost:8083/api
-
 app:
   kafka:
     consumer:
