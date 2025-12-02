@@ -11,11 +11,19 @@ spring:
 
   kafka:
     bootstrap-servers: kafka:9092
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      properties:
-        spring.json.add.type.headers: false
+
+  mail:
+    host: mailpit
+    port: 1025
+    username:
+    password:
+    properties:
+      mail:
+        smtp:
+          auth: false
+          starttls:
+            enable: false
+
 server:
   port: 8084
 
@@ -34,6 +42,14 @@ services:
   payment:
     base-url: http://localhost:8083/api
 
-kafka:
-  topics:
-    order-created: order-created-topic
+app:
+  kafka:
+    consumer:
+      notification-group-id: notification-service
+    topics:
+      order-created: order-topic
+      payment-completed: payment-topic
+      payment-failed: payment-topic
+
+notification:
+  default-sender: "no-reply@ecommerce.local"
